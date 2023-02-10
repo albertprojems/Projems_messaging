@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECOSTAR SMS</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-offset-1 col-md-10">
+            <h2 class="page-header text-info text-center">ECOSTAR SMS</h2>
+            <div class="col-md-offset-3 col-md-5">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <center><a href="{{url_for('SendSMS')}}" class="btn btn-success">Send SMS</a></center>
+                    </td>
+                </tr>
+                    <tr>
+                    <td>
+                        <center><a href="{{url_for('EcostarLA')}}" class="btn btn-info">Eco LA Inbox</a> <a href="{{url_for('EcostarTX')}}" class="btn btn-info">Eco Texas Inbox</a> <a href="{{url_for('EcostarSea')}}" class="btn btn-info">Eco Seattle Inbox</a></center>   
+                    </td>
+                </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(3000)
+    });
+</script>

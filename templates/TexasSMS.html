@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>SMS</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+</head>
+<body >
+    <div class="container">
+        <div class="col-md-offset-3 col-md-5">
+            <form action="http://phoneadapter.projems.com:8100/api/messaging/send_sms2/?" target="_blank">
+                <h2 class="page-header text-primary text-center">SMS</h2>
+                <div class="form-group">
+                    <input type="hidden" id="api_sid" name="api_sid" value="ecostartx">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="api_token" name="api_token" value="ecotxtoken">
+                </div>
+                <div class="form-group">
+                    <label for="source">DID Number:</label>
+                    <input class="form-control" type="text" id="source" name="source" placeholder="Your Mobile Number (e.g. +14155552675)" required>
+                </div>
+                <div class="form-group">
+                    <label for="text">Your Text Message</label>
+                    <textarea class="form-control" type="text" id="text" name="text" placeholder="Put your message here" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Customer Phone Number</label>
+                    <input type="text" class="form-control" id="destination" name="destination" placeholder="Client Mobile Number (e.g. +14155552675)" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success btn-block" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $("form").attr("autocomplete","off");
+        });
+    </script>
+</body>
+</html>

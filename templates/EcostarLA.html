@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <script>
+        function reloadPage()
+        {
+        location.reload();
+        }
+        </script>
+</head>
+<body>
+    <input type="button" value="Reload Page for New Message" onclick="reloadPage()">
+    <div class="container">
+        <div class="col-md-offset-1 col-md-10">
+            <h2 class="page-header text-primary text-center">Inbox</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th>S.No</th>
+                    <th>Phone Numer</th>
+                    <th>Date</th>
+                    <th>Text</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for res in data %}
+                        {% set i=loop.index %}
+                    <tr>
+                        <td>{{i}}</td>
+                        <td>{{res["number"]}}</td>
+                        <td>{{res["date"]}}</td>
+                        <td>{{res["text"]}}</td>
+                        <td style="text-align:center"><a href="{{url_for('delete_record',id=res['pid'])}} " class="btn btn-danger">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                <a href="{{url_for('home')}}" class="btn btn-warning pull-right">Home Page</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(3000)
+    });
+</script>
