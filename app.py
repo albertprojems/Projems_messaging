@@ -7,13 +7,15 @@ from twilio import twiml
 app = Flask(__name__)
 app.secret_key="123"
 
+
+
 #con=sqlite3.connect("database.db")
 #con.execute("CREATE TABLE IF NOT EXISTS data(pid INTEGER PRIMARY KEY ,name TEXT,address TEXT,contact INTEGER,mail TEXT)")
 #con.close()
 
 @app.route('/')
 def home():
-    return ("Hello World")
+    return render_template('index.html')
 
 @app.route('/LosAngelesSMS')
 def LosAngelesSMS():
@@ -34,7 +36,7 @@ def EcostarLA():
             text = request.form['Body']
             date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
             if number:
-                with sql.connect("databaseLA.db") as con:
+                with sql.connect("database.db") as con:
                     cur = con.cursor()
                     cur.execute("INSERT INTO data (date,number,text) VALUES (?,?,?)",(date,number,text))
                 return "Number:{} Text:{}".format(number, text)
